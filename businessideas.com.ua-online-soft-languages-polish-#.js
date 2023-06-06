@@ -1,3 +1,4 @@
+// businessideas.com.ua/online-soft/languages/polish/#
 // in go.js source file 
 // 1. add (var count = 0) at start file
 // change after $("div.but").live('click', 
