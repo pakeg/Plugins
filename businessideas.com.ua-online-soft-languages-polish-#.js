@@ -1,9 +1,39 @@
 // businessideas.com.ua/online-soft/languages/polish/#
-// add `var count = 0` to console
-// in go.js source file 
-// change after $("div.but").live('click', 
+// block request for go.js 
+// add to console  
 
-function () {
+var $ur;
+var $ls;
+var $ln;
+var count = 0;
+function lessons($ur, $ls, $ln){
+ $.ajax({
+          url: 'response1.php?ur='+$ur+'&start='+$ls+'&par='+$ln,
+          success: function(data) {
+            $('.result1').html(data);
+          }
+        });
+	$.ajax({
+          url: 'response2.php?ur='+$ur+'&start='+$ls+'&par='+$ln,
+          success: function(data) {
+            $('.result2').html(data);
+          }
+        });
+}
+
+ var $i=0;
+ var $vd;
+ var $va1;
+ var $va2;
+
+ $("a.but").live('click', function(){
+	$va2=this.id;
+	if($i==0){
+	$va1=this.id;
+	
+			}
+	});
+	$("div.but").live('click', function () {
   if ($i == 0) {
     $vd = this.id;
     $(this).css({ background: "#7BE37B" });
@@ -38,3 +68,17 @@ function () {
     $("#" + $vd).css({ background: "#FFFF77" });
   }
 });
+const menubut = document.querySelector(".menubut");
+
+
+menubut.onclick  = function (e) {
+    const target = e.target;
+    const arrTarget = target.getAttribute('class').substring(6).split('_'); 
+    $ur = "less"+arrTarget[0];
+    $ls = 10*(arrTarget[1]-1);
+    $ln = 10;
+    const title = document.querySelector(".sample"+arrTarget[0]+"_1").previousElementSibling.textContent.replace(/[0-9]|:|\./g, "").trim() +" урок "+ arrTarget[1];
+    const intro = document.querySelector(".intro").innerText = title;
+    target.style.backgroundColor = "#7BE37B";
+    lessons($ur, $ls, $ln);
+}
